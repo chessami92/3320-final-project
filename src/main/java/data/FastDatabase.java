@@ -1,6 +1,8 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by: Josh
@@ -21,10 +23,24 @@ public class FastDatabase implements StudentDatabase {
 
     @Override
     public boolean addStudent(Student student) {
-        student.setId(students.size());
+        int studentId = students.size();
+        student.setId(studentId);
         students.add(student);
-        //Add in the required indicies...
+
+        //Add the student to the index corresponding to their majors.
+        int[] majors = Arrays.copyOf(student.getMajors(), student.getMajors().length + 1);
+        //Also add them to the all students level.
+        majors[majors.length - 1] = 0;
+
+        Index newStudentGrade = new Index(studentId, student.getGrade());
+        for (int major : majors) {
+            insertMajorGrade(gradeIndex[major], newStudentGrade);
+        }
         return true;
+    }
+
+    private void insertMajorGrade(List<Index> index, Index newStudentGrade) {
+        //Perform insertion sort here on index. The Index class has a compareTo method.
     }
 
     @Override
