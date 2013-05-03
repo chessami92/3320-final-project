@@ -10,8 +10,7 @@ public class Student {
     private double grade;
     private int[] majors;
 
-    Student(int studentId, String name, double grade, int[] majors) {
-        this.studentId = studentId;
+    Student(String name, double grade, int[] majors) {
         this.name = name;
         if (grade > 100)
             this.grade = 100;

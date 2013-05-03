@@ -11,12 +11,12 @@ import java.util.Random;
 public class StudentFactory {
     private static final Random random = new Random();
 
-    public static Student generateStudents(int currentStudent) {
+    public static Student generateStudents() {
         final String name = generateName() + " " + generateName();
         final double grade = random.nextDouble() * 100;
         final int[] majors = generateMajors();
 
-        return new Student(currentStudent, name, grade, majors);
+        return new Student(name, grade, majors);
     }
 
     /*
