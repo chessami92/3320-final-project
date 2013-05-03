@@ -1,5 +1,7 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -8,7 +10,6 @@ import java.util.Random;
  */
 public class StudentFactory {
     private static final Random random = new Random();
-    private static final Major[] possibleMajors = Major.values();
 
     public static Student generateStudents(int currentStudent) {
         final String name = generateName() + " " + generateName();
@@ -55,9 +56,16 @@ public class StudentFactory {
 
         final int[] majors = new int[numberMajors];
 
+        final ArrayList<Major> possibleMajors = new ArrayList<Major>();
+        Collections.addAll(possibleMajors, Major.values());
+        //Make sure to not assign the person "all majors."
+        possibleMajors.remove(0);
+
         for (int i = 0; i < majors.length; ++i) {
-            //Make sure to not assign the person "all majors"
-            majors[i] = random.nextInt(possibleMajors.length - 1) + 1;
+            int nextMajor = random.nextInt(possibleMajors.size());
+            majors[i] = possibleMajors.get(nextMajor).getIndex();
+            //Prevent duplicates by removing it from the possible majors list.
+            possibleMajors.remove(nextMajor);
         }
 
         return majors;

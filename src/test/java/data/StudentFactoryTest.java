@@ -9,7 +9,11 @@ import org.testng.annotations.Test;
 public class StudentFactoryTest {
     @Test
     public void testGenerateStudents() throws Exception {
-
+        for (int i = 0; i < 20; ++i) {
+            Student student = StudentFactory.generateStudents(0);
+            System.out.println(student);
+        }
+        throw new Exception("Test");
     }
 
     @Test
