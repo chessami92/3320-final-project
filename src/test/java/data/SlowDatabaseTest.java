@@ -15,7 +15,7 @@ public class SlowDatabaseTest {
         slowDatabase = new SlowDatabase();
 
         for (int i = 0; i < 10; ++i) {
-            slowDatabase.addStudent(StudentFactory.generateStudents());
+            slowDatabase.addStudent(StudentFactory.generateStudent());
             System.out.println(slowDatabase.getById(i));
         }
     }
@@ -37,11 +37,11 @@ public class SlowDatabaseTest {
     }
 
     @Test
-    public void testGetHigestGrades() throws Exception {
+    public void testGetHighestGrades() throws Exception {
         System.out.println("Highest scorers");
 
         Major[] majors = Major.values();
-        Student[] students = slowDatabase.getHigestGrades();
+        Student[] students = slowDatabase.getHighestAchievers();
         for(int i = 0; i < students.length; ++i) {
             System.out.printf("%-25s|%s\n", majors[i].getDescription(), students[i]);
         }

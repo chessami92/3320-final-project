@@ -55,7 +55,7 @@ public class SlowDatabase implements StudentDatabase {
     }
 
     @Override
-    public Student[] getHigestGrades() {
+    public Student[] getHighestAchievers() {
         Student[] highestAchievers = new Student[Major.values().length];
 
         for (Student student : students) {

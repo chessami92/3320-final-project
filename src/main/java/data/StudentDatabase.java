@@ -12,5 +12,5 @@ public interface StudentDatabase {
 
     public double[] getPercentilesById(int id);
 
-    public Student[] getHigestGrades();
+    public Student[] getHighestAchievers();
 }

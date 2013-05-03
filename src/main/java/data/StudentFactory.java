@@ -11,7 +11,7 @@ import java.util.Random;
 public class StudentFactory {
     private static final Random random = new Random();
 
-    public static Student generateStudents() {
+    public static Student generateStudent() {
         final String name = generateName() + " " + generateName();
         final double grade = random.nextDouble() * 100;
         final int[] majors = generateMajors();

@@ -10,7 +10,7 @@ public class StudentFactoryTest {
     @Test
     public void testGenerateStudents() throws Exception {
         for (int i = 0; i < 20; ++i) {
-            Student student = StudentFactory.generateStudents();
+            Student student = StudentFactory.generateStudent();
             System.out.println(student);
         }
     }
