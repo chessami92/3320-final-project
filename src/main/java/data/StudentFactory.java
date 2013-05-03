@@ -56,7 +56,8 @@ public class StudentFactory {
         final int[] majors = new int[numberMajors];
 
         for (int i = 0; i < majors.length; ++i) {
-            majors[i] = random.nextInt(possibleMajors.length);
+            //Make sure to not assign the person "all majors"
+            majors[i] = random.nextInt(possibleMajors.length - 1) + 1;
         }
 
         return majors;

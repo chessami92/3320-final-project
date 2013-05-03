@@ -5,9 +5,14 @@ package data;
  * On: 4/25/13 9:44 PM
  */
 public enum Major {
+    ALL_MAJORS(0, "All Majors"),
     COMPUTER_SCIENCE(1, "Computer Science"),
     MATH(2, "Mathematics"),
-    COMPUTER_ENGINEERING(3, "Computer Engineering");
+    COMPUTER_ENGINEERING(3, "Computer Engineering"),
+    HISTORY(4, "History"),
+    PSYCHOLOGY(5, "Psychology"),
+    BUSINESS(6, "Business"),
+    FINE_ARTS(7, "Fine Arts");
 
     private final int index;
     private final String description;
@@ -24,4 +29,4 @@ public enum Major {
     public String getDescription() {
         return description;
     }
-}
+    }
