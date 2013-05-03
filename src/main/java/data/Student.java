@@ -36,8 +36,6 @@ public class Student {
     @Override
     public String toString() {
 
-        String studentIdString = String.format("%7s", studentId).replace(" ", "0");
-
         Major[] majorList = Major.values();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < majors.length - 1; ++i) {
@@ -46,6 +44,6 @@ public class Student {
         }
         sb.append(majorList[majors[majors.length - 1]].getDescription());
 
-        return String.format("%s|%20s|%8.2f|   %s", studentIdString, name, grade, sb.toString());
+        return String.format("%07d|%20s|%8.2f|   %s", studentId, name, grade, sb.toString());
     }
 }
