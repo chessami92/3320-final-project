@@ -1,3 +1,4 @@
+import data.SlowDatabase;
 import data.Student;
 import data.StudentDatabase;
 
@@ -38,7 +39,7 @@ public class TestEfficiency {
     private static Statistics testEfficientAlgorithm() {
         Statistics statistics = new Statistics();
 
-        StudentDatabase studentDatabase = new StudentDatabase();
+        StudentDatabase studentDatabase = new SlowDatabase();
 
         return statistics;
     }
