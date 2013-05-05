@@ -32,7 +32,15 @@ public class FastDatabaseTest {
 
     @Test
     public void testGetPercentilesById() throws Exception {
+        double[] percentiles = fastDatabase.getPercentilesById(0);
 
+        for(double percentile : percentiles) {
+            if(percentile != 0) {
+                System.out.printf("%s, ", percentile);
+            }
+        }
+        System.out.println();
+        throw new Exception("blah, print it");
     }
 
     @Test

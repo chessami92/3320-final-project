@@ -67,7 +67,57 @@ public class FastDatabase implements StudentDatabase {
 
     @Override
     public double[] getPercentilesById(int id) {
-        return new double[0];
+        Student student = getById(id);
+        double[] percentiles = new double[Major.values().length];
+
+        int[] majors = Arrays.copyOf(student.getMajors(), student.getMajors().length + 1);
+        //Also check for the all majors category.
+        majors[majors.length - 1] = 0;
+
+        for (int major : majors) {
+            percentiles[major] = getPercentileByMajor(major, student.getGrade());
+        }
+
+        return percentiles;
+    }
+
+    /*
+     * Returns a percentile, given the major and the student's grade.
+     * If the grade passed is not in that major's index, an illegal argument
+     * exception is thrown.
+     */
+    private double getPercentileByMajor(int major, double grade) {
+        int low = 0, middle, high = gradeIndex[major].size();
+
+        while (high >= low) {
+            middle = (low + high) / 2;
+            if (gradeIndex[major].get(middle).data == grade) {
+                middle = firstOccurrence(major, middle);
+                return ((double) middle) / gradeIndex[major].size();
+            }
+            if (gradeIndex[major].get(middle).data < grade) {
+                low = middle + 1;
+            }
+            if (gradeIndex[major].get(middle).data > grade) {
+                high = middle - 1;
+            }
+        }
+
+        throw new IllegalArgumentException("Could not find the grade");
+    }
+
+    /*
+     * Once found the grade, make sure that the percentile is calculated based
+     * on the first occurrence of this grade, case there are duplicates.
+     */
+    private int firstOccurrence(int major, int index) {
+        int newIndex = index;
+
+        while (newIndex != 0 && gradeIndex[major].get(newIndex - 1).data == gradeIndex[major].get(newIndex).data) {
+            --newIndex;
+        }
+
+        return newIndex;
     }
 
     @Override
@@ -76,7 +126,7 @@ public class FastDatabase implements StudentDatabase {
 
         for (int i = 0; i < Major.values().length; ++i) {
             ArrayList<Index> gradesForMajor = gradeIndex[i];
-            if(gradesForMajor.size() > 0) {
+            if (gradesForMajor.size() > 0) {
                 int idForHightestInMajor = gradesForMajor.get(gradesForMajor.size() - 1).id;
                 highestAchievers[i] = getById(idForHightestInMajor);
             }
