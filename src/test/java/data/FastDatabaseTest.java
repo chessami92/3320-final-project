@@ -14,7 +14,7 @@ public class FastDatabaseTest {
     public void setup() {
         fastDatabase = new FastDatabase();
 
-        for(int i = 0; i< 10; ++i){
+        for(int i = 0; i< 20; ++i){
             fastDatabase.addStudent(StudentFactory.generateStudent());
             System.out.println(fastDatabase.getById(i));
         }
@@ -37,6 +37,11 @@ public class FastDatabaseTest {
 
     @Test
     public void testGetHigestGrades() throws Exception {
+        Student[] students = fastDatabase.getHighestAchievers();
 
+        System.out.println();
+        for(Student student : students) {
+            System.out.println(student);
+        }
     }
 }

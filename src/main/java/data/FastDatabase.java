@@ -72,6 +72,16 @@ public class FastDatabase implements StudentDatabase {
 
     @Override
     public Student[] getHighestAchievers() {
-        return new Student[0];
+        Student[] highestAchievers = new Student[Major.values().length];
+
+        for (int i = 0; i < Major.values().length; ++i) {
+            ArrayList<Index> gradesForMajor = gradeIndex[i];
+            if(gradesForMajor.size() > 0) {
+                int idForHightestInMajor = gradesForMajor.get(gradesForMajor.size() - 1).id;
+                highestAchievers[i] = getById(idForHightestInMajor);
+            }
+        }
+
+        return highestAchievers;
     }
 }
