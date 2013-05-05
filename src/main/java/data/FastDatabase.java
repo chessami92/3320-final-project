@@ -39,8 +39,21 @@ public class FastDatabase implements StudentDatabase {
         return true;
     }
 
+    /*
+     * Adds in the element into the sorted array. Element 0 is the lowest grade.
+     */
     private void insertMajorGrade(List<Index> index, Index newStudentGrade) {
-        //Perform insertion sort here on index. The Index class has a compareTo method.
+        index.add(newStudentGrade);
+
+        for (int i = index.size() - 2; i >= 0; --i) {
+            Index temp = index.get(i);
+            if (temp.data > newStudentGrade.data) {
+                index.set(i, newStudentGrade);
+                index.set(i + 1, temp);
+            } else {
+                break;
+            }
+        }
     }
 
     @Override
