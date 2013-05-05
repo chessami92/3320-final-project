@@ -20,7 +20,7 @@ public class TestEfficiency {
             + "4 - Exit ";
     private static final String ID_PROMPT = "Enter the student's id: ";
     private static final String TIME_TOOK = "Took %s nanoseconds\n";
-//    private static final String
+    private static final String COMPARISON = "Fast database was %5.2f times faster than the slow database.\n";
     private static Map<String, Long> databaseTimes = new HashMap<String, Long>();
 
     /*
@@ -104,7 +104,7 @@ public class TestEfficiency {
             System.out.printf(TIME_TOOK, timeTook);
         }
 
-        System.out.printf("Fast database was %5.2f%s faster than the slow database.\n",
-                ((double) databaseTimes.get("Fast Database")) / databaseTimes.get("Slow Database"), "%");
+        double timesFaster = ((double) databaseTimes.get("Fast Database")) / databaseTimes.get("Slow Database");
+        System.out.printf(COMPARISON, timesFaster);
     }
 }
