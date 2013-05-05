@@ -16,10 +16,10 @@ public class SlowDatabase implements StudentDatabase {
     }
 
     @Override
-    public boolean addStudent(Student student) {
+    public Student addStudent(Student student) {
         student.setId(students.size());
         students.add(student);
-        return true;
+        return student;
     }
 
     @Override
@@ -41,7 +41,11 @@ public class SlowDatabase implements StudentDatabase {
 
         double[] percentiles = new double[Major.values().length];
 
-        for (int major : student.getMajors()) {
+        int[] majors = Arrays.copyOf(student.getMajors(), student.getMajors().length + 1);
+        //Also check for the all majors category.
+        majors[majors.length - 1] = 0;
+
+        for (int major : majors) {
             int numberBetter = 0;
             for (Student otherStudent : students) {
                 if (student.getGrade() > otherStudent.getGrade()) {
@@ -75,5 +79,10 @@ public class SlowDatabase implements StudentDatabase {
         }
 
         return highestAchievers;
+    }
+
+    @Override
+    public String toString() {
+        return "Slow Database";
     }
 }

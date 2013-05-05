@@ -22,7 +22,7 @@ public class FastDatabase implements StudentDatabase {
     }
 
     @Override
-    public boolean addStudent(Student student) {
+    public Student addStudent(Student student) {
         int studentId = students.size();
         student.setId(studentId);
         students.add(student);
@@ -36,7 +36,7 @@ public class FastDatabase implements StudentDatabase {
         for (int major : majors) {
             insertMajorGrade(gradeIndex[major], newStudentGrade);
         }
-        return true;
+        return student;
     }
 
     /*
@@ -133,5 +133,10 @@ public class FastDatabase implements StudentDatabase {
         }
 
         return highestAchievers;
+    }
+
+    @Override
+    public String toString () {
+        return "Fast Database";
     }
 }
