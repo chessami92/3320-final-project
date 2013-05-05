@@ -58,7 +58,7 @@ public class FastDatabase implements StudentDatabase {
 
     @Override
     public Student getById(int id) {
-        if (id > students.size() - 1 && id >= 0) {
+        if (id > students.size() - 1 || id < 0) {
             return null;
         } else {
             return students.get(id);
@@ -68,7 +68,12 @@ public class FastDatabase implements StudentDatabase {
     @Override
     public double[] getPercentilesById(int id) {
         Student student = getById(id);
+        if(student == null) {
+            return null;
+        }
+
         double[] percentiles = new double[Major.values().length];
+        Arrays.fill(percentiles, -1);
 
         int[] majors = Arrays.copyOf(student.getMajors(), student.getMajors().length + 1);
         //Also check for the all majors category.

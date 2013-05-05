@@ -40,7 +40,6 @@ public class FastDatabaseTest {
             }
         }
         System.out.println();
-        throw new Exception("blah, print it");
     }
 
     @Test

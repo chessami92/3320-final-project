@@ -24,7 +24,7 @@ public class SlowDatabase implements StudentDatabase {
 
     @Override
     public Student getById(int id) {
-        if (id > students.size() - 1 && id >= 0) {
+        if (id > students.size() - 1 || id < 0) {
             return null;
         } else {
             return students.get(id);
@@ -40,6 +40,7 @@ public class SlowDatabase implements StudentDatabase {
         }
 
         double[] percentiles = new double[Major.values().length];
+        Arrays.fill(percentiles, -1);
 
         int[] majors = Arrays.copyOf(student.getMajors(), student.getMajors().length + 1);
         //Also check for the all majors category.
@@ -47,15 +48,35 @@ public class SlowDatabase implements StudentDatabase {
 
         for (int major : majors) {
             int numberBetter = 0;
+            int totalStudents = 0;
             for (Student otherStudent : students) {
-                if (student.getGrade() > otherStudent.getGrade()) {
-                    ++numberBetter;
+                int[] otherStudentMajors = otherStudent.getMajors();
+                if (hasMajor(otherStudentMajors, major)) {
+                    ++totalStudents;
+                    if (student.getGrade() > otherStudent.getGrade()) {
+                        ++numberBetter;
+                    }
                 }
             }
-            percentiles[major] = (double) numberBetter / students.size();
+            percentiles[major] = ((double) numberBetter) / totalStudents;
         }
 
         return percentiles;
+    }
+
+    private boolean hasMajor(int[] otherStudentMajors, int major) {
+        //Always returns true for all majors.
+        if (major == 0) {
+            return true;
+        } else {
+            for (int checkMajor : otherStudentMajors) {
+                if (checkMajor == major) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     @Override
