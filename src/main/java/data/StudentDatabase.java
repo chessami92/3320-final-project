@@ -6,7 +6,7 @@ package data;
  */
 public interface StudentDatabase {
 
-    public boolean addStudent(Student student);
+    public Student addStudent(Student student);
 
     public Student getById(int id);
 
