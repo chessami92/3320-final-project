@@ -12,7 +12,9 @@ public enum Major {
     HISTORY(4, "History"),
     PSYCHOLOGY(5, "Psychology"),
     BUSINESS(6, "Business"),
-    FINE_ARTS(7, "Fine Arts");
+    FINE_ARTS(7, "Fine Arts"),
+    CHEMICAL_ENGINEERING(8, "Chemical Engineering"),
+    ENGLISH(9, "English");
 
     private final int index;
     private final String description;

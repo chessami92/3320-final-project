@@ -83,7 +83,7 @@ public class TestEfficiency {
             }
             for (int i = 0; i < percentiles.length; ++i) {
                 if (percentiles[i] != -1) {
-                    System.out.printf("%s: %5.2f\n", majors[i].getDescription(), percentiles[i]);
+                    System.out.printf("%-25s:%5.2f\n", majors[i].getDescription(), percentiles[i]);
                 }
             }
             long timeTook = System.nanoTime() - startTime;
@@ -105,7 +105,7 @@ public class TestEfficiency {
             System.out.println(database);
             Student[] students = database.getHighestAchievers();
             for (int i = 0; i < students.length; ++i) {
-                System.out.printf("%-20s: %s\n", majors[i].getDescription(), students[i]);
+                System.out.printf("%-25s:%s\n", majors[i].getDescription(), students[i]);
             }
 
             long timeTook = System.nanoTime() - startTime;
