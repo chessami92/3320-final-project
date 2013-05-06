@@ -44,6 +44,6 @@ public class Student {
         }
         sb.append(majorList[majors[majors.length - 1]].getDescription());
 
-        return String.format("%07d|%20s|%8.2f|   %s", studentId, name, grade, sb.toString());
+        return String.format("%07d|%-20s|%8.2f|   %s", studentId, name, grade, sb.toString());
     }
 }

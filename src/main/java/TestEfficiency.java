@@ -24,6 +24,7 @@ public class TestEfficiency {
     private static final String SLOWER = "Fast database was %.2f times slower than the slow database.\n";
     private static final String DOES_NOT_EXIST = "Student could not be found in the databse.";
     private static Map<String, Long> databaseTimes = new HashMap<String, Long>();
+    private static Major[] majors = Major.values();
 
     /*
      * Main program for testing the efficiency of both solutions
@@ -71,7 +72,6 @@ public class TestEfficiency {
 
     private static void getPercentileById() {
         int id = inputId();
-        Major[] majors = Major.values();
         for (StudentDatabase database : DATABASES) {
             long startTime = System.nanoTime();
             System.out.println(database);
@@ -79,6 +79,7 @@ public class TestEfficiency {
             double[] percentiles = database.getPercentilesById(id);
             if (percentiles == null) {
                 System.out.println(DOES_NOT_EXIST);
+                continue;
             }
             for (int i = 0; i < percentiles.length; ++i) {
                 if (percentiles[i] != -1) {
@@ -98,6 +99,19 @@ public class TestEfficiency {
     }
 
     private static void getHighestAchievers() {
+        for (StudentDatabase database : DATABASES) {
+            long startTime = System.nanoTime();
+
+            System.out.println(database);
+            Student[] students = database.getHighestAchievers();
+            for (int i = 0; i < students.length; ++i) {
+                System.out.printf("%-20s: %s\n", majors[i].getDescription(), students[i]);
+            }
+
+            long timeTook = System.nanoTime() - startTime;
+            databaseTimes.put(database.toString(), timeTook);
+        }
+
         printTimesTook();
     }
 
