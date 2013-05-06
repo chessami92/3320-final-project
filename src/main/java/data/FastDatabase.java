@@ -41,6 +41,8 @@ public class FastDatabase implements StudentDatabase {
 
     /*
      * Adds in the element into the sorted array. Element 0 is the lowest grade.
+     * Simply performs an insertion sort, knowing that everything but the last
+     * element is sorted. "Pulls" the new element to it's proper location.
      */
     private void insertMajorGrade(List<Index> index, Index newStudentGrade) {
         index.add(newStudentGrade);
@@ -108,7 +110,7 @@ public class FastDatabase implements StudentDatabase {
             }
         }
 
-        throw new IllegalArgumentException("Could not find the grade");
+        throw new IllegalArgumentException("Could not find the grade - student must not exist in this major.");
     }
 
     /*
