@@ -15,7 +15,6 @@ public enum Major {
     FINE_ARTS(7, "Fine Arts"),
     CHEMICAL_ENGINEERING(8, "Chemical Engineering"),
     ENGLISH(9, "English");
-
     private final int index;
     private final String description;
 
@@ -31,4 +30,4 @@ public enum Major {
     public String getDescription() {
         return description;
     }
-    }
+}
